@@ -1,13 +1,12 @@
 import React from 'react';
+import { Text } from 'react-native';
 
-import {
-  Container
-} from './styles';
+import { Container } from './styles';
 
 export function Question() {
-  return (
-    <Container>
-
-    </Container>
-  );
+	return (
+		<Container>
+			<Text>Fim</Text>
+		</Container>
+	);
 }

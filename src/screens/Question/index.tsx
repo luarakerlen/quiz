@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 
 import {
   Container
@@ -7,7 +8,7 @@ import {
 export function End() {
   return (
     <Container>
-
+      <Text>Question</Text>
     </Container>
   );
 }
