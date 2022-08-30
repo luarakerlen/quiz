@@ -1,0 +1,20 @@
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Beginning, Question, End } from '../screens';
+
+const { Navigator, Screen } = createNativeStackNavigator();
+
+export function AppStackRoutes() {
+	return (
+		<Navigator
+			screenOptions={{
+				headerShown: false,
+			}}
+			initialRouteName='Beginning'
+		>
+			<Screen name='Beginning' component={Beginning} />
+			<Screen name='Question' component={Question} />
+			<Screen name='End' component={End} />
+		</Navigator>
+	);
+}

@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 import { Container } from './styles';
 
-export function Question() {
+export function End() {
 	return (
 		<Container>
 			<Text>Fim</Text>

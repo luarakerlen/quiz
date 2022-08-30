@@ -5,7 +5,7 @@ import {
   Container
 } from './styles';
 
-export function End() {
+export function Question() {
   return (
     <Container>
       <Text>Question</Text>
