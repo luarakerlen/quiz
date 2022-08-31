@@ -1,15 +1,15 @@
 export default {
 	colors: {
 		primary: '#8952FF',
+		secondary: '#FFFFFF',
 
 		text: '#FFFFFF',
 		text_secondary: '#000000',
+		button: '#75C5FF',
 
 		success: '#52CE6D',
 		fail: '#F24747',
 
-		button: '#75C5FF',
-		button_light: '#ADDDFF',
 	},
 
 	fonts: {
