@@ -22,21 +22,13 @@ export function Question() {
 			<Card>
 				<Title>{question.question}</Title>
 
-				<ResponseButton>
-					<ButtonText>{responses[0]}</ButtonText>
-				</ResponseButton>
-
-				<ResponseButton>
-					<ButtonText>{responses[1]}</ButtonText>
-				</ResponseButton>
-
-				<ResponseButton>
-					<ButtonText>{responses[2]}</ButtonText>
-				</ResponseButton>
-
-				<ResponseButton>
-					<ButtonText>{responses[3]}</ButtonText>
-				</ResponseButton>
+				{responses.map((item, index) => {
+					return (
+						<ResponseButton key={index}>
+							<ButtonText>{item}</ButtonText>
+						</ResponseButton>
+					);
+				})}
 			</Card>
 		</Container>
 	);
