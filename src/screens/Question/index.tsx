@@ -1,35 +1,55 @@
 import React from 'react';
-import { FlatList } from 'react-native';
-
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Container, Title, ResponseButton, ButtonText, Card } from './styles';
+import { QuestionCard } from '../../components';
+import { Button } from 'react-native';
+
+export interface QuestionInterface {
+	category: string;
+	type: string;
+	difficulty: string;
+	question: string;
+	correct_answer: string;
+	incorrect_answers: string[];
+}
+
+interface Params {
+	questions: QuestionInterface[];
+	questionIndex: number;
+}
 
 export function Question() {
-	const question = {
-		category: 'General Knowledge',
-		type: 'multiple',
-		difficulty: 'medium',
-		question:
-			'When was the Declaration of Independence approved by the Second Continental Congress?',
-		correct_answer: 'July 4, 1776',
-		incorrect_answers: ['May 4, 1776', 'June 4, 1776', 'July 2, 1776'],
-	};
+	const navigation = useNavigation<any>();
+	const route = useRoute();
+	const { questions, questionIndex } = route.params as Params;
 
-	let responses = [question.correct_answer, ...question.incorrect_answers];
-	responses = responses.sort(() => Math.random() - 0.5);
+	const questionQuantity = questions.length;
+	const hasMoreQuestions = questionIndex < questionQuantity - 1;
+
+	function nextQuestion() {
+		const nextQuestionIndex = questionIndex + 1;
+		navigation.navigate('Question', {
+			questions,
+			questionIndex: nextQuestionIndex,
+		});
+	}
+
+	function endGame() {
+		navigation.navigate('End');
+	}
+
+	function continueOrEnd() {
+		if (hasMoreQuestions) {
+			nextQuestion();
+		} else {
+			endGame();
+		}
+	}
 
 	return (
-		<Container>
-			<Card>
-				<Title>{question.question}</Title>
-
-				{responses.map((item, index) => {
-					return (
-						<ResponseButton key={index}>
-							<ButtonText>{item}</ButtonText>
-						</ResponseButton>
-					);
-				})}
-			</Card>
-		</Container>
+		<QuestionCard
+			questionData={questions[questionIndex]}
+			onPress={continueOrEnd}
+		/>
 	);
 }
