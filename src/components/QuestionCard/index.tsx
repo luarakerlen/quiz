@@ -18,12 +18,12 @@ export function QuestionCard({ questionData, onPress }: Props) {
 	return (
 		<Container>
 			<Card>
-				<Title>{questionData.question}</Title>
+				<Title>{decodeURIComponent(questionData.question)}</Title>
 
 				{responses.map((response, index) => {
 					return (
 						<ResponseButton key={index} onPress={onPress}>
-							<ButtonText>{response}</ButtonText>
+							<ButtonText>{decodeURIComponent(response)}</ButtonText>
 						</ResponseButton>
 					);
 				})}
