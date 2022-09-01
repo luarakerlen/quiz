@@ -5,7 +5,9 @@ export default {
 
 		text: '#FFFFFF',
 		text_secondary: '#000000',
+
 		button: '#75C5FF',
+		disabled_button: '#8952FF',
 
 		success: '#52CE6D',
 		fail: '#F24747',

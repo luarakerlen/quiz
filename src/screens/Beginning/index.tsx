@@ -1,51 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Container, Title, Subtitle, StartButton, ButtonText } from './styles';
 import { QuestionInterface } from '../Question';
+import axios from 'axios';
+import { ActivityIndicator, Alert } from 'react-native';
+import { useTheme } from 'styled-components';
 
 export function Beginning() {
 	const navigation = useNavigation<any>();
-
-	const questions: QuestionInterface[] = [
-		{
-			category: 'General Knowledge',
-			type: 'multiple',
-			difficulty: 'medium',
-			question:
-				'When was the Declaration of Independence approved by the Second Continental Congress?',
-			correct_answer: 'July 4, 1776',
-			incorrect_answers: ['May 4, 1776', 'June 4, 1776', 'July 2, 1776'],
-		},
-		{
-			category: 'General Knowledge',
-			type: 'multiple',
-			difficulty: 'easy',
-			question:
-				'What type of animal was Harambe, who was shot after a child fell into it&#039;s enclosure at the Cincinnati Zoo?',
-			correct_answer: 'Gorilla',
-			incorrect_answers: ['Tiger', 'Panda', 'Crocodile'],
-		},
-		{
-			category: 'General Knowledge',
-			type: 'multiple',
-			difficulty: 'hard',
-			question:
-				'Disney&#039;s Haunted Mansion is home to a trio of Hitchhiking Ghosts. Which of these is NOT one of them?',
-			correct_answer: 'Harry',
-			incorrect_answers: ['Gus', 'Phineas', 'Ezra'],
-		},
-	];
+	const [isLoading, setIsLoading] = useState(false);
+	const theme = useTheme();
 
 	function startGame() {
-		navigation.navigate('Question', { questions, questionIndex: 0 });
+		setIsLoading(true);
+		axios
+			.get('https://opentdb.com/api.php?amount=10&category=9&type=multiple')
+			.then((response) => {
+				const questions: QuestionInterface[] = response.data.results;
+				if (questions.length > 0) {
+					navigation.navigate('Question', { questions, questionIndex: 0 });
+				} else {
+					console.log('Array de perguntas vazia');
+					Alert.alert('Erro!', 'Não foi possível iniciar o jogo.');
+				}
+			})
+			.catch((error) => {
+				setIsLoading(false);
+				console.log('Erro ao buscar perguntas: ', error);
+				Alert.alert('Erro!', 'Não foi possível iniciar o jogo.');
+			});
 	}
 
 	return (
 		<Container>
 			<Title>You're ready to start?</Title>
 			<Subtitle>It gonna take just a few minutes</Subtitle>
-			<StartButton onPress={startGame}>
-				<ButtonText>Start</ButtonText>
+			<StartButton
+				disabled={isLoading}
+				isLoading={isLoading}
+				onPress={startGame}
+			>
+				{isLoading ? (
+					<ActivityIndicator color={theme.colors.text} />
+				) : (
+					<ButtonText>Start</ButtonText>
+				)}
 			</StartButton>
 		</Container>
 	);
