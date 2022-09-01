@@ -10,12 +10,36 @@ export const Container = styled.View`
 
 export const Card = styled.View`
 	width: 100%;
-	height: 70%;
-	padding: 0 20px;
+	min-height: 70%;
+	padding: 16px 20px;
+	background-color: ${({ theme }) => theme.colors.secondary};
+	/* box-shadow: 1px 1px 10px; */
+`;
+
+export const CardHeader = styled.View`
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 16px;
+`;
+
+export const HeaderContainer = styled.View``;
+
+export const HeaderTitle = styled.Text`
+	font-family: ${({ theme }) => theme.fonts.regular};
+	color: ${({ theme }) => theme.colors.text_third};
+`;
+
+export const HeaderDescription = styled.Text`
+	font-family: ${({ theme }) => theme.fonts.regular};
+	color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const CardContent = styled.View`
+	flex: 1;
+	width: 100%;
 	align-items: center;
 	justify-content: center;
-	background-color: ${({ theme }) => theme.colors.secondary};
-	box-shadow: 1px 1px 10px;
 `;
 
 export const Title = styled.Text`
@@ -29,7 +53,7 @@ export const Title = styled.Text`
 export const ResponseButton = styled.TouchableOpacity`
 	margin-top: 16px;
 	width: 80%;
-	padding: 16px 0;
+	padding: 16px 8px;
 	border-radius: 5px;
 	background-color: ${({ theme }) => theme.colors.button};
 `;

@@ -1,7 +1,19 @@
 import React from 'react';
+import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
 
-import { ButtonText, Card, Container, ResponseButton, Title } from './styles';
+import {
+	ButtonText,
+	Card,
+	Container,
+	ResponseButton,
+	Title,
+	CardHeader,
+	HeaderContainer,
+	HeaderTitle,
+	HeaderDescription,
+	CardContent,
+} from './styles';
 
 interface Props {
 	questionData: QuestionInterface;
@@ -18,15 +30,33 @@ export function QuestionCard({ questionData, onPress }: Props) {
 	return (
 		<Container>
 			<Card>
-				<Title>{decodeURIComponent(questionData.question)}</Title>
+				<CardHeader>
+					<HeaderContainer>
+						<HeaderTitle>Category</HeaderTitle>
+						<HeaderDescription>
+							{decodeURIComponent(questionData.category)}
+						</HeaderDescription>
+					</HeaderContainer>
 
-				{responses.map((response, index) => {
-					return (
-						<ResponseButton key={index} onPress={onPress}>
-							<ButtonText>{decodeURIComponent(response)}</ButtonText>
-						</ResponseButton>
-					);
-				})}
+					<HeaderContainer>
+						<HeaderTitle>Difficulty</HeaderTitle>
+						<DifficultyBullets
+							difficulty={decodeURIComponent(questionData.difficulty)}
+						/>
+					</HeaderContainer>
+				</CardHeader>
+
+				<CardContent>
+					<Title>{decodeURIComponent(questionData.question)}</Title>
+
+					{responses.map((response, index) => {
+						return (
+							<ResponseButton key={index} onPress={onPress}>
+								<ButtonText>{decodeURIComponent(response)}</ButtonText>
+							</ResponseButton>
+						);
+					})}
+				</CardContent>
 			</Card>
 		</Container>
 	);
