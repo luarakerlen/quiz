@@ -9,18 +9,27 @@ import {
 	ResponseButton,
 	Title,
 	CardHeader,
-	HeaderContainer,
-	HeaderTitle,
-	HeaderDescription,
+	Characteristics,
+	Characteristic,
+	CharacteristicTitle,
+	CharacteristicDescription,
 	CardContent,
 } from './styles';
+import { ProgressBar } from '../ProgressBar';
 
 interface Props {
 	questionData: QuestionInterface;
+	totalOfQuestions: number;
+	questionPosition: number;
 	onPress: () => void;
 }
 
-export function QuestionCard({ questionData, onPress }: Props) {
+export function QuestionCard({
+	questionData,
+	totalOfQuestions,
+	questionPosition,
+	onPress,
+}: Props) {
 	let responses = [
 		questionData.correct_answer,
 		...questionData.incorrect_answers,
@@ -31,19 +40,22 @@ export function QuestionCard({ questionData, onPress }: Props) {
 		<Container>
 			<Card>
 				<CardHeader>
-					<HeaderContainer>
-						<HeaderTitle>Category</HeaderTitle>
-						<HeaderDescription>
-							{decodeURIComponent(questionData.category)}
-						</HeaderDescription>
-					</HeaderContainer>
+					<ProgressBar total={totalOfQuestions} partial={questionPosition} />
+					<Characteristics>
+						<Characteristic>
+							<CharacteristicTitle>Category</CharacteristicTitle>
+							<CharacteristicDescription>
+								{decodeURIComponent(questionData.category)}
+							</CharacteristicDescription>
+						</Characteristic>
 
-					<HeaderContainer>
-						<HeaderTitle>Difficulty</HeaderTitle>
-						<DifficultyBullets
-							difficulty={decodeURIComponent(questionData.difficulty)}
-						/>
-					</HeaderContainer>
+						<Characteristic>
+							<CharacteristicTitle>Difficulty</CharacteristicTitle>
+							<DifficultyBullets
+								difficulty={decodeURIComponent(questionData.difficulty)}
+							/>
+						</Characteristic>
+					</Characteristics>
 				</CardHeader>
 
 				<CardContent>

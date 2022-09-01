@@ -49,6 +49,8 @@ export function Question() {
 	return (
 		<QuestionCard
 			questionData={questions[questionIndex]}
+			totalOfQuestions={questionQuantity}
+			questionPosition={questionIndex+1}
 			onPress={continueOrEnd}
 		/>
 	);
