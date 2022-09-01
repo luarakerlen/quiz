@@ -14,7 +14,7 @@ export function Beginning() {
 	function startGame() {
 		setIsLoading(true);
 		axios
-			.get('https://opentdb.com/api.php?amount=10&encode=url3986')
+			.get('https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986')
 			.then((response) => {
 				const questions: QuestionInterface[] = response.data.results;
 				if (questions.length > 0) {
