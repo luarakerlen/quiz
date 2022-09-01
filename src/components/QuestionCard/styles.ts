@@ -12,6 +12,7 @@ export const Card = styled.View`
 	width: 100%;
 	min-height: 70%;
 	padding: 16px 20px;
+	border-radius: 8px;
 	background-color: ${({ theme }) => theme.colors.secondary};
 	/* box-shadow: 1px 1px 10px; */
 `;
@@ -41,7 +42,7 @@ export const CharacteristicDescription = styled.Text`
 `;
 
 export const CardContent = styled.View`
-	flex: 1;
+	flex-grow: 1;
 	width: 100%;
 	align-items: center;
 	justify-content: center;
