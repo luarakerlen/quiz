@@ -5,6 +5,7 @@ export default {
 
 		text: '#FFFFFF',
 		text_secondary: '#000000',
+		text_third: '#CCCCCC',
 
 		button: '#75C5FF',
 		disabled_button: '#8952FF',
