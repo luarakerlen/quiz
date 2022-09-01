@@ -18,19 +18,24 @@ export const Card = styled.View`
 
 export const CardHeader = styled.View`
 	width: 100%;
-	flex-direction: row;
-	justify-content: space-between;
 	margin-bottom: 16px;
 `;
 
-export const HeaderContainer = styled.View``;
+export const Characteristics = styled.View`
+	width: 100%;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 16px;
+`;
 
-export const HeaderTitle = styled.Text`
+export const Characteristic = styled.View``;
+
+export const CharacteristicTitle = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.regular};
 	color: ${({ theme }) => theme.colors.text_third};
 `;
 
-export const HeaderDescription = styled.Text`
+export const CharacteristicDescription = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.regular};
 	color: ${({ theme }) => theme.colors.primary};
 `;
