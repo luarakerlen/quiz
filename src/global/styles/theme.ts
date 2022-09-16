@@ -12,7 +12,6 @@ export default {
 
 		success: '#52CE6D',
 		fail: '#F24747',
-
 	},
 
 	fonts: {
