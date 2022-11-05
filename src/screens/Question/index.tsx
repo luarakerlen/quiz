@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Container, Title, ResponseButton, ButtonText, Card } from './styles';
 import { QuestionCard } from '../../components';
-import { Button } from 'react-native';
 
 export interface QuestionInterface {
 	category: string;
