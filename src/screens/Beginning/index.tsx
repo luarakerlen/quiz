@@ -24,9 +24,11 @@ export function Beginning() {
 				}
 			})
 			.catch((error) => {
-				setIsLoading(false);
 				console.log('Erro ao buscar perguntas: ', error);
 				Alert.alert('Erro!', 'Não foi possível iniciar o jogo.');
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	}
 
