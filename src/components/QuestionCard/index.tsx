@@ -3,6 +3,7 @@ import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
 import { ProgressBar } from '../ProgressBar';
 import { saveAnswer } from '../../helpers';
+import { DefaultContainer } from '..';
 import {
 	ButtonText,
 	Card,
@@ -15,7 +16,6 @@ import {
 	CharacteristicDescription,
 	CardContent,
 } from './styles';
-import { DefaultContainer } from '../DefaultContainer';
 
 interface Props {
 	questionData: QuestionInterface;
@@ -37,7 +37,12 @@ export function QuestionCard({
 	responses = responses.sort(() => Math.random() - 0.5);
 
 	async function handlePressAnswerButton(response: string) {
-		await saveAnswer(questionPosition, questionData.correct_answer, response);
+		await saveAnswer({
+			questionNumber: questionPosition,
+			question: questionData.question,
+			correctAnswer: questionData.correct_answer,
+			givenAnswer: response,
+		});
 		onPress();
 	}
 

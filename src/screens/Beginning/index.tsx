@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import { Title, Subtitle } from './styles';
 import { QuestionInterface } from '../Question';
-import axios from 'axios';
 import { Alert } from 'react-native';
 import { DefaultButton, DefaultContainer } from '../../components';
 

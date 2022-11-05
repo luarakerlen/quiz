@@ -4,17 +4,20 @@ import { dataKey } from '../utils';
 
 export interface storedQuestionDataProps {
 	questionNumber: number;
+	question: string;
 	correctAnswer: string;
 	givenAnswer: string;
 }
 
-export async function saveAnswer(
-	questionNumber: number,
-	correctAnswer: string,
-	givenAnswer: string
-) {
+export async function saveAnswer({
+	questionNumber,
+	question,
+	correctAnswer,
+	givenAnswer,
+}: storedQuestionDataProps) {
 	const newStoredQuestionData: storedQuestionDataProps = {
 		questionNumber,
+		question,
 		correctAnswer,
 		givenAnswer,
 	};

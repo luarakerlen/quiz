@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useQuestionsCorrection, useStoredQuestionsData } from '../../hooks';
+import { clearAnswers } from '../../helpers';
+import { Card, IconsContainer, Title, Subtitle, CardContent } from './styles';
 import {
 	CorrectionIcon,
 	DefaultButton,
 	DefaultContainer,
 } from '../../components';
-import { clearAnswers } from '../../helpers';
-import { useQuestionsCorrection, useStoredQuestionsData } from '../../hooks';
-import { Card, IconsContainer, Title, Subtitle, CardContent } from './styles';
 
 export function End() {
 	const navigation = useNavigation<any>();
@@ -16,7 +16,7 @@ export function End() {
 	const {
 		MINIMUM_OF_CORRECT_ANSWERS,
 		numberOfCorrectAnswers,
-		questionsCorrection,
+		// questionsCorrection,
 		result,
 	} = useQuestionsCorrection(storedQuestionsData);
 
@@ -35,12 +35,9 @@ export function End() {
 		<DefaultContainer>
 			<Card>
 				<IconsContainer>
-					{questionsCorrection.map((question) => {
+					{storedQuestionsData.map((question) => {
 						return (
-							<CorrectionIcon
-								key={question.questionNumber}
-								isCorrect={question.isCorrect}
-							/>
+							<CorrectionIcon key={question.questionNumber} {...question} />
 						);
 					})}
 				</IconsContainer>
