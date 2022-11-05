@@ -36,8 +36,8 @@ export function QuestionCard({
 	];
 	responses = responses.sort(() => Math.random() - 0.5);
 
-	function handlePressAnswerButton(response: string) {
-		saveAnswer(questionPosition, questionData.correct_answer, response);
+	async function handlePressAnswerButton(response: string) {
+		await saveAnswer(questionPosition, questionData.correct_answer, response);
 		onPress();
 	}
 
