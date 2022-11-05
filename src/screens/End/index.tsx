@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useQuestionsCorrection, useStoredQuestionsData } from '../../hooks';
 import { clearAnswers } from '../../helpers';
-import { Card, IconsContainer, Title, Subtitle, CardContent } from './styles';
+import { IconsContainer, Title, Subtitle, CardContent } from './styles';
 import {
 	CorrectionIcon,
 	DefaultButton,
+	DefaultCard,
 	DefaultContainer,
 } from '../../components';
 
@@ -33,7 +34,7 @@ export function End() {
 
 	return (
 		<DefaultContainer>
-			<Card>
+			<DefaultCard>
 				<IconsContainer>
 					{storedQuestionsData.map((question) => {
 						return (
@@ -53,7 +54,7 @@ export function End() {
 						isLoading={isLoading}
 					/>
 				</CardContent>
-			</Card>
+			</DefaultCard>
 		</DefaultContainer>
 	);
 }
