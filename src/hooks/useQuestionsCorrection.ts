@@ -2,7 +2,7 @@ import { storedQuestionDataProps } from '../helpers/storage';
 
 interface QuestionCorrectionProps {
 	questionNumber: number;
-	correct: boolean;
+	isCorrect: boolean;
 }
 
 export function useQuestionsCorrection(
@@ -15,13 +15,13 @@ export function useQuestionsCorrection(
 	questionsData.forEach((questionData) => {
 		const newQuestionCorrection = {
 			questionNumber: questionData.questionNumber,
-			correct: true,
+			isCorrect: true,
 		};
 		if (questionData.givenAnswer === questionData.correctAnswer) {
 			numberOfCorrectAnswers++;
 			questionsCorrection.push(newQuestionCorrection);
 		} else {
-			newQuestionCorrection.correct = false;
+			newQuestionCorrection.isCorrect = false;
 			questionsCorrection.push(newQuestionCorrection);
 		}
 	});
