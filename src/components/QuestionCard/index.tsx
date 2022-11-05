@@ -3,18 +3,18 @@ import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
 import { ProgressBar } from '../ProgressBar';
 import { saveAnswer } from '../../helpers';
-import { DefaultContainer } from '..';
+import { DefaultContainer, QuestionText, Spacing } from '..';
 import {
 	ButtonText,
 	Card,
 	ResponseButton,
-	Title,
 	CardHeader,
 	Characteristics,
 	Characteristic,
 	CharacteristicTitle,
 	CharacteristicDescription,
 	CardContent,
+	SuperTitle,
 } from './styles';
 
 interface Props {
@@ -69,7 +69,11 @@ export function QuestionCard({
 				</CardHeader>
 
 				<CardContent>
-					<Title>{decodeURIComponent(questionData.question)}</Title>
+					<SuperTitle>Question {questionPosition}</SuperTitle>
+					{/* <QuestionNumberText text='{`Question ${questionPosition}`}'/> */}
+					{/* <Spacing spacingVertical='8px' />  */}
+					<QuestionText text={decodeURIComponent(questionData.question)} />
+					<Spacing spacingVertical='16px' />
 
 					{responses.map((response, index) => {
 						return (

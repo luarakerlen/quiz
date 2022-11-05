@@ -5,3 +5,5 @@ export * from './DefaultButton';
 export * from './DefaultContainer';
 export * from './CorrectionIcon';
 export * from './DefaultCard';
+export * from './Spacing';
+export * from './QuestionText';

@@ -1,8 +1,20 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { DefaultButton, DefaultCard, DefaultContainer } from '../../components';
+import {
+	DefaultButton,
+	DefaultCard,
+	DefaultContainer,
+	QuestionText,
+	Spacing,
+} from '../../components';
 import { StoredQuestionDataProps } from '../../helpers';
-import { Content, CorrectAnswer, GivenAnswer, Question, Title } from './styles';
+import {
+	Content,
+	CorrectAnswer,
+	GivenAnswer,
+	StrongText,
+	Title,
+} from './styles';
 
 interface Params {
 	data: StoredQuestionDataProps;
@@ -22,14 +34,19 @@ export function QuestionCorrection() {
 			<DefaultCard>
 				<Content>
 					<Title>Question {data.questionNumber}</Title>
-					<Question>{decodeURIComponent(data.question)}</Question>
+					{/* <QuestionNumberText text='teste'/> */}
+					<Spacing spacingVertical='8px' />
+					<QuestionText text={decodeURIComponent(data.question)} />
+					<Spacing spacingVertical='8px' />
 					{data.givenAnswer !== data.correctAnswer && (
 						<GivenAnswer>
-							Given answer: {decodeURIComponent(data.givenAnswer)}
+							<StrongText>Given answer:</StrongText>{' '}
+							{decodeURIComponent(data.givenAnswer)}
 						</GivenAnswer>
 					)}
 					<CorrectAnswer>
-						Correct answer: {decodeURIComponent(data.correctAnswer)}
+						<StrongText>Correct answer:</StrongText>{' '}
+						{decodeURIComponent(data.correctAnswer)}
 					</CorrectAnswer>
 					<DefaultButton text='Go Back' onPress={goBack} />
 				</Content>

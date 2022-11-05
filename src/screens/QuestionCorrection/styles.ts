@@ -14,14 +14,6 @@ export const Title = styled.Text`
 	color: ${({ theme }) => theme.colors.text_secondary};
 `;
 
-export const Question = styled.Text`
-	font-size: 24px;
-	text-align: center;
-	margin: 8px 0;
-	font-family: ${({ theme }) => theme.fonts.regular};
-	color: ${({ theme }) => theme.colors.text_secondary};
-`;
-
 export const GivenAnswer = styled.Text`
 	font-size: 18px;
 	text-align: center;
@@ -37,4 +29,8 @@ export const CorrectAnswer = styled.Text`
 	margin: 16px 0;
 	font-family: ${({ theme }) => theme.fonts.regular};
 	color: ${({ theme }) => theme.colors.success};
+`;
+
+export const StrongText = styled.Text`
+	font-family: ${({ theme }) => theme.fonts.bold};
 `;

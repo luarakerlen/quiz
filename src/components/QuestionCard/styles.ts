@@ -40,11 +40,11 @@ export const CardContent = styled.View`
 	justify-content: center;
 `;
 
-export const Title = styled.Text`
-	margin-bottom: 16px;
+export const SuperTitle = styled.Text`
+	margin-bottom: 8px;
 	text-align: center;
-	font-size: 24px;
-	font-family: ${({ theme }) => theme.fonts.regular};
+	font-size: 32px;
+	font-family: ${({ theme }) => theme.fonts.bold};
 	color: ${({ theme }) => theme.colors.text_secondary};
 `;
 
