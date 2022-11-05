@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Container, Title, Subtitle, StartButton, ButtonText } from './styles';
+import { Title, Subtitle } from './styles';
 import { QuestionInterface } from '../Question';
 import axios from 'axios';
-import { ActivityIndicator, Alert } from 'react-native';
-import { useTheme } from 'styled-components';
+import { Alert } from 'react-native';
+import { DefaultButton, DefaultContainer } from '../../components';
 
 export function Beginning() {
 	const navigation = useNavigation<any>();
 	const [isLoading, setIsLoading] = useState(false);
-	const theme = useTheme();
 
 	function startGame() {
 		setIsLoading(true);
@@ -32,20 +31,10 @@ export function Beginning() {
 	}
 
 	return (
-		<Container>
+		<DefaultContainer>
 			<Title>You're ready to start?</Title>
 			<Subtitle>It gonna take just a few minutes</Subtitle>
-			<StartButton
-				disabled={isLoading}
-				isLoading={isLoading}
-				onPress={startGame}
-			>
-				{isLoading ? (
-					<ActivityIndicator color={theme.colors.text} />
-				) : (
-					<ButtonText>Start</ButtonText>
-				)}
-			</StartButton>
-		</Container>
+			<DefaultButton isLoading={isLoading} onPress={startGame} text='Start' />
+		</DefaultContainer>
 	);
 }

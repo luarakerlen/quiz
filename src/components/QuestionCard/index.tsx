@@ -6,7 +6,6 @@ import { saveAnswer } from '../../helpers';
 import {
 	ButtonText,
 	Card,
-	Container,
 	ResponseButton,
 	Title,
 	CardHeader,
@@ -16,6 +15,7 @@ import {
 	CharacteristicDescription,
 	CardContent,
 } from './styles';
+import { DefaultContainer } from '../DefaultContainer';
 
 interface Props {
 	questionData: QuestionInterface;
@@ -42,7 +42,7 @@ export function QuestionCard({
 	}
 
 	return (
-		<Container>
+		<DefaultContainer>
 			<Card>
 				<CardHeader>
 					<ProgressBar total={totalOfQuestions} partial={questionPosition} />
@@ -78,6 +78,6 @@ export function QuestionCard({
 					})}
 				</CardContent>
 			</Card>
-		</Container>
+		</DefaultContainer>
 	);
 }
