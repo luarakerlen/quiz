@@ -1,14 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
+import { dataKey } from '../utils';
 
 interface storedQuestionDataProps {
 	questionNumber: number;
 	correctAnswer: string;
 	givenAnswer: string;
 }
-
-const dataKey = '@quiz:questions';
 
 export async function saveAnswer(
 	questionNumber: number,
@@ -40,24 +38,4 @@ export async function clearAnswers() {
 		console.log('Erro ao excluir dados: ', e);
 		Alert.alert('Erro!', 'Não foi possível continuar.');
 	}
-}
-
-export function useStoredQuestionsData() {
-	const [storedQuestionsData, setStoredQuestionsData] = useState([]);
-	async function getAnswers() {
-		try {
-			const data = await AsyncStorage.getItem(dataKey);
-			const currentData = data ? JSON.parse(data) : [];
-			setStoredQuestionsData(currentData);
-		} catch (e) {
-			console.log('Erro ao recuperar dados do storage: ', e);
-			Alert.alert('Erro!', 'Não foi possível continuar.');
-		}
-	}
-
-	useEffect(() => {
-		getAnswers();
-	}, []);
-
-	return { storedQuestionsData };
 }
