@@ -1,7 +1,7 @@
-import { storedQuestionDataProps } from '../helpers/storage';
+import { StoredQuestionDataProps } from '../helpers/storage';
 
 export function useQuestionsCorrection(
-	questionsData: storedQuestionDataProps[]
+	questionsData: StoredQuestionDataProps[]
 ) {
 	const MINIMUM_OF_CORRECT_ANSWERS = Math.ceil(questionsData.length / 2);
 	let numberOfCorrectAnswers = 0;

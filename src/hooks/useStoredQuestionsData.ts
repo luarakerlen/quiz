@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
-import { storedQuestionDataProps } from '../helpers';
+import { StoredQuestionDataProps } from '../helpers';
 import { dataKey } from '../utils';
 
 export function useStoredQuestionsData() {
-	const [storedQuestionsData, setStoredQuestionsData] = useState<storedQuestionDataProps[]>([]);
+	const [storedQuestionsData, setStoredQuestionsData] = useState<StoredQuestionDataProps[]>([]);
 	async function getAnswers() {
 		try {
 			const data = await AsyncStorage.getItem(dataKey);

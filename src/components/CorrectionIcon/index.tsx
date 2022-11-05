@@ -3,22 +3,24 @@ import { Octicons } from '@expo/vector-icons';
 import theme from '../../global/styles/theme';
 import { Container } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import { storedQuestionDataProps } from '../../helpers';
+import { StoredQuestionDataProps } from '../../helpers';
 
 export function CorrectionIcon({
 	questionNumber,
 	question,
 	correctAnswer,
 	givenAnswer,
-}: storedQuestionDataProps) {
+}: StoredQuestionDataProps) {
 	const navigation = useNavigation<any>();
 	const isCorrect = givenAnswer === correctAnswer;
 	function goToCorrectionScreen() {
 		navigation.navigate('QuestionCorrection', {
-			questionNumber,
-			question,
-			givenAnswer,
-			correctAnswer,
+			data: {
+				questionNumber,
+				question,
+				givenAnswer,
+				correctAnswer,
+			},
 		});
 	}
 
