@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { DefaultButton, DefaultContainer } from '../../components';
+import {
+	CorrectionIcon,
+	DefaultButton,
+	DefaultContainer,
+} from '../../components';
 import { clearAnswers } from '../../helpers';
-import { useStoredQuestionsData } from '../../hooks';
-import { Card, IconsContainer, Title, Subtitle } from './styles';
+import { useQuestionsCorrection, useStoredQuestionsData } from '../../hooks';
+import { Card, IconsContainer, Title, Subtitle, CardContent } from './styles';
 
 export function End() {
-	const { storedQuestionsData } = useStoredQuestionsData();
 	const navigation = useNavigation<any>();
-	// console.log('respostas: ', storedQuestionsData);
-	// console.log('respostas: ', storedQuestionsData.length);
+	const [isLoading, setIsLoading] = useState(false);
+	const { storedQuestionsData } = useStoredQuestionsData();
+	const {
+		MINIMUM_OF_CORRECT_ANSWERS,
+		numberOfCorrectAnswers,
+		questionsCorrection,
+		result,
+	} = useQuestionsCorrection(storedQuestionsData);
 
 	const subtitle = {
 		success: `Congratulations!\nYou passed`,
-		fail: 'To pass the test, you need get at least 7 answers right',
+		fail: `To pass the test, you need get at least ${MINIMUM_OF_CORRECT_ANSWERS} answers right`,
 	};
 
 	function handleTryAgain() {
+		setIsLoading(true);
 		clearAnswers();
 		navigation.pop(2);
 	}
@@ -24,10 +34,28 @@ export function End() {
 	return (
 		<DefaultContainer>
 			<Card>
-				<IconsContainer></IconsContainer>
-				<Title>You've reached 6 out of 10</Title>
-				<Subtitle>{subtitle.success}</Subtitle>
-				<DefaultButton text='Try again' onPress={handleTryAgain} />
+				<IconsContainer>
+					{questionsCorrection.map((question) => {
+						return (
+							<CorrectionIcon
+								key={question.questionNumber}
+								isCorrect={question.isCorrect}
+							/>
+						);
+					})}
+				</IconsContainer>
+				<CardContent>
+					<Title>
+						You've reached {numberOfCorrectAnswers} out of{' '}
+						{storedQuestionsData.length}
+					</Title>
+					<Subtitle>{subtitle[result]}</Subtitle>
+					<DefaultButton
+						text='Try again'
+						onPress={handleTryAgain}
+						isLoading={isLoading}
+					/>
+				</CardContent>
 			</Card>
 		</DefaultContainer>
 	);
