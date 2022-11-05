@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Beginning, Question, End } from '../screens';
+import { Beginning, Question, End, QuestionCorrection } from '../screens';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -15,6 +15,7 @@ export function AppStackRoutes() {
 			<Screen name='Beginning' component={Beginning} />
 			<Screen name='Question' component={Question} />
 			<Screen name='End' component={End} />
+			<Screen name='QuestionCorrection' component={QuestionCorrection} />
 		</Navigator>
 	);
 }
