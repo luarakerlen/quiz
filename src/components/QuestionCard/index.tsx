@@ -3,7 +3,12 @@ import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
 import { ProgressBar } from '../ProgressBar';
 import { saveAnswer } from '../../helpers';
-import { DefaultContainer, QuestionText, Spacing } from '..';
+import {
+	DefaultContainer,
+	QuestionNumberText,
+	QuestionText,
+	Spacing,
+} from '..';
 import {
 	ButtonText,
 	Card,
@@ -14,7 +19,6 @@ import {
 	CharacteristicTitle,
 	CharacteristicDescription,
 	CardContent,
-	SuperTitle,
 } from './styles';
 
 interface Props {
@@ -69,9 +73,8 @@ export function QuestionCard({
 				</CardHeader>
 
 				<CardContent>
-					<SuperTitle>Question {questionPosition}</SuperTitle>
-					{/* <QuestionNumberText text='{`Question ${questionPosition}`}'/> */}
-					{/* <Spacing spacingVertical='8px' />  */}
+					<QuestionNumberText text={`Question ${questionPosition}`} />
+					<Spacing spacingVertical='8px' />
 					<QuestionText text={decodeURIComponent(questionData.question)} />
 					<Spacing spacingVertical='16px' />
 

@@ -7,3 +7,4 @@ export * from './CorrectionIcon';
 export * from './DefaultCard';
 export * from './Spacing';
 export * from './QuestionText';
+export * from './QuestionNumberText';

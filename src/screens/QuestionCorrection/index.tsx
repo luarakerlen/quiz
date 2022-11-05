@@ -4,17 +4,12 @@ import {
 	DefaultButton,
 	DefaultCard,
 	DefaultContainer,
+	QuestionNumberText,
 	QuestionText,
 	Spacing,
 } from '../../components';
 import { StoredQuestionDataProps } from '../../helpers';
-import {
-	Content,
-	CorrectAnswer,
-	GivenAnswer,
-	StrongText,
-	Title,
-} from './styles';
+import { Content, CorrectAnswer, GivenAnswer, StrongText } from './styles';
 
 interface Params {
 	data: StoredQuestionDataProps;
@@ -33,8 +28,7 @@ export function QuestionCorrection() {
 		<DefaultContainer>
 			<DefaultCard>
 				<Content>
-					<Title>Question {data.questionNumber}</Title>
-					{/* <QuestionNumberText text='teste'/> */}
+					<QuestionNumberText text={`Question ${data.questionNumber}`} />
 					<Spacing spacingVertical='8px' />
 					<QuestionText text={decodeURIComponent(data.question)} />
 					<Spacing spacingVertical='8px' />

@@ -7,13 +7,6 @@ export const Content = styled.View`
 	justify-content: center;
 `;
 
-export const Title = styled.Text`
-	font-size: 32px;
-	text-align: center;
-	font-family: ${({ theme }) => theme.fonts.bold};
-	color: ${({ theme }) => theme.colors.text_secondary};
-`;
-
 export const GivenAnswer = styled.Text`
 	font-size: 18px;
 	text-align: center;

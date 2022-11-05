@@ -40,14 +40,6 @@ export const CardContent = styled.View`
 	justify-content: center;
 `;
 
-export const SuperTitle = styled.Text`
-	margin-bottom: 8px;
-	text-align: center;
-	font-size: 32px;
-	font-family: ${({ theme }) => theme.fonts.bold};
-	color: ${({ theme }) => theme.colors.text_secondary};
-`;
-
 export const ResponseButton = styled.TouchableOpacity`
 	margin-top: 16px;
 	width: 80%;
