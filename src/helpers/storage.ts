@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import { dataKey } from '../utils';
 
-interface storedQuestionDataProps {
+export interface storedQuestionDataProps {
 	questionNumber: number;
 	correctAnswer: string;
 	givenAnswer: string;
