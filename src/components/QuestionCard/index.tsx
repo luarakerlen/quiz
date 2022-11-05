@@ -1,7 +1,8 @@
 import React from 'react';
 import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
-
+import { ProgressBar } from '../ProgressBar';
+import { saveAnswer } from '../../helpers';
 import {
 	ButtonText,
 	Card,
@@ -15,7 +16,6 @@ import {
 	CharacteristicDescription,
 	CardContent,
 } from './styles';
-import { ProgressBar } from '../ProgressBar';
 
 interface Props {
 	questionData: QuestionInterface;
@@ -35,6 +35,11 @@ export function QuestionCard({
 		...questionData.incorrect_answers,
 	];
 	responses = responses.sort(() => Math.random() - 0.5);
+
+	function handlePressAnswerButton(response: string) {
+		saveAnswer(questionPosition, questionData.correct_answer, response);
+		onPress();
+	}
 
 	return (
 		<Container>
@@ -63,7 +68,10 @@ export function QuestionCard({
 
 					{responses.map((response, index) => {
 						return (
-							<ResponseButton key={index} onPress={onPress}>
+							<ResponseButton
+								key={index}
+								onPress={() => handlePressAnswerButton(response)}
+							>
 								<ButtonText>{decodeURIComponent(response)}</ButtonText>
 							</ResponseButton>
 						);

@@ -26,7 +26,6 @@ export async function saveAnswer(
 		const updatedData = [...currentData, newStoredQuestionData];
 
 		await AsyncStorage.setItem(dataKey, JSON.stringify(updatedData));
-		console.log('dados salvos: ', updatedData);
 	} catch (e) {
 		console.log('Erro ao salvar resposta: ', e);
 		Alert.alert('Erro ao salvar!', 'Não foi possível registrar sua resposta.');
