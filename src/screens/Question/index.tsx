@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { QuestionCard } from '../../components';
+import { DefaultContainer, QuestionCard } from '../../components';
 
 export interface QuestionInterface {
 	category: string;
@@ -45,11 +45,13 @@ export function Question() {
 	}
 
 	return (
-		<QuestionCard
-			questionData={questions[questionIndex]}
-			totalOfQuestions={questionQuantity}
-			questionPosition={questionIndex+1}
-			onPress={continueOrEnd}
-		/>
+		<DefaultContainer>
+			<QuestionCard
+				questionData={questions[questionIndex]}
+				totalOfQuestions={questionQuantity}
+				questionPosition={questionIndex + 1}
+				onPress={continueOrEnd}
+			/>
+		</DefaultContainer>
 	);
 }

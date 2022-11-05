@@ -3,12 +3,7 @@ import { DifficultyBullets } from '../DifficultyBullets';
 import { QuestionInterface } from '../../screens';
 import { ProgressBar } from '../ProgressBar';
 import { saveAnswer } from '../../helpers';
-import {
-	DefaultContainer,
-	QuestionNumberText,
-	QuestionText,
-	Spacing,
-} from '..';
+import { QuestionNumberText, QuestionText, Spacing } from '..';
 import {
 	ButtonText,
 	Card,
@@ -51,45 +46,43 @@ export function QuestionCard({
 	}
 
 	return (
-		<DefaultContainer>
-			<Card>
-				<CardHeader>
-					<ProgressBar total={totalOfQuestions} partial={questionPosition} />
-					<Characteristics>
-						<Characteristic>
-							<CharacteristicTitle>Category</CharacteristicTitle>
-							<CharacteristicDescription>
-								{decodeURIComponent(questionData.category)}
-							</CharacteristicDescription>
-						</Characteristic>
+		<Card>
+			<CardHeader>
+				<ProgressBar total={totalOfQuestions} partial={questionPosition} />
+				<Characteristics>
+					<Characteristic>
+						<CharacteristicTitle>Category</CharacteristicTitle>
+						<CharacteristicDescription>
+							{decodeURIComponent(questionData.category)}
+						</CharacteristicDescription>
+					</Characteristic>
 
-						<Characteristic>
-							<CharacteristicTitle>Difficulty</CharacteristicTitle>
-							<DifficultyBullets
-								difficulty={decodeURIComponent(questionData.difficulty)}
-							/>
-						</Characteristic>
-					</Characteristics>
-				</CardHeader>
+					<Characteristic>
+						<CharacteristicTitle>Difficulty</CharacteristicTitle>
+						<DifficultyBullets
+							difficulty={decodeURIComponent(questionData.difficulty)}
+						/>
+					</Characteristic>
+				</Characteristics>
+			</CardHeader>
 
-				<CardContent>
-					<QuestionNumberText text={`Question ${questionPosition}`} />
-					<Spacing spacingVertical='8px' />
-					<QuestionText text={decodeURIComponent(questionData.question)} />
-					<Spacing spacingVertical='16px' />
+			<CardContent>
+				<QuestionNumberText text={`Question ${questionPosition}`} />
+				<Spacing spacingVertical='8px' />
+				<QuestionText text={decodeURIComponent(questionData.question)} />
+				<Spacing spacingVertical='16px' />
 
-					{responses.map((response, index) => {
-						return (
-							<ResponseButton
-								key={index}
-								onPress={() => handlePressAnswerButton(response)}
-							>
-								<ButtonText>{decodeURIComponent(response)}</ButtonText>
-							</ResponseButton>
-						);
-					})}
-				</CardContent>
-			</Card>
-		</DefaultContainer>
+				{responses.map((response, index) => {
+					return (
+						<ResponseButton
+							key={index}
+							onPress={() => handlePressAnswerButton(response)}
+						>
+							<ButtonText>{decodeURIComponent(response)}</ButtonText>
+						</ResponseButton>
+					);
+				})}
+			</CardContent>
+		</Card>
 	);
 }
