@@ -13,3 +13,12 @@ export const Subtitle = styled.Text`
 	font-family: ${({ theme }) => theme.fonts.regular};
 	color: ${({ theme }) => theme.colors.text};
 `;
+
+export const ButtonsContainer = styled.View`
+	width: 100%;
+	flex-direction: row;
+`;
+
+export const ButtonContainer = styled.View`
+	flex: 1;
+`;

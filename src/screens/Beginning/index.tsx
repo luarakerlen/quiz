@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import { Title, Subtitle } from './styles';
+import { ButtonContainer, ButtonsContainer, Title, Subtitle } from './styles';
 import { QuestionInterface } from '../Question';
 import { Alert } from 'react-native';
 import { DefaultButton, DefaultContainer } from '../../components';
+import { gameType } from '../../interfaces';
 
 export function Beginning() {
 	const navigation = useNavigation<any>();
-	const [isLoading, setIsLoading] = useState(false);
+	const [isClassicButtonLoading, setIsClassicButtonLoading] = useState(false);
+	const [isTimedButtonLoading, setIsTimedButtonLoading] = useState(false);
 
-	function startGame() {
-		setIsLoading(true);
+	function startGame(type: gameType) {
+		type === 'classic'
+			? setIsClassicButtonLoading(true)
+			: setIsTimedButtonLoading(true);
 		axios
 			.get('https://opentdb.com/api.php?amount=10&type=multiple&encode=url3986')
 			.then((response) => {
@@ -28,7 +32,8 @@ export function Beginning() {
 				Alert.alert('Erro!', 'Não foi possível iniciar o jogo.');
 			})
 			.finally(() => {
-				setIsLoading(false);
+				setIsClassicButtonLoading(false);
+				setIsTimedButtonLoading(false);
 			});
 	}
 
@@ -36,7 +41,25 @@ export function Beginning() {
 		<DefaultContainer>
 			<Title>You're ready to start?</Title>
 			<Subtitle>It gonna take just a few minutes</Subtitle>
-			<DefaultButton isLoading={isLoading} onPress={startGame} text='Start' />
+			<ButtonsContainer>
+				<ButtonContainer style={{ marginRight: 10 }}>
+					<DefaultButton
+						isLoading={isClassicButtonLoading}
+						onPress={() => startGame('classic')}
+						text='Classic'
+						icon='play-circle-outline'
+					/>
+				</ButtonContainer>
+				<ButtonContainer>
+					<DefaultButton
+						isLoading={isTimedButtonLoading}
+						onPress={() => startGame('timed')}
+						text='Timed'
+						icon='timer'
+						outlined
+					/>
+				</ButtonContainer>
+			</ButtonsContainer>
 		</DefaultContainer>
 	);
 }
