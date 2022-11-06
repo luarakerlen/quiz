@@ -8,3 +8,4 @@ export * from './DefaultCard';
 export * from './Spacing';
 export * from './QuestionText';
 export * from './QuestionNumberText';
+export * from './CustomStopwatch';

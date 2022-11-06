@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useQuestionsCorrection, useStoredQuestionsData } from '../../hooks';
 import { clearAnswers } from '../../helpers';
-import { IconsContainer, Title, Subtitle, CardContent } from './styles';
+import {
+	IconsContainer,
+	Title,
+	Subtitle,
+	CardContent,
+	TimeContainer,
+	TimeText,
+} from './styles';
 import {
 	CorrectionIcon,
 	DefaultButton,
@@ -10,16 +17,19 @@ import {
 	DefaultContainer,
 } from '../../components';
 
+interface Params {
+	timeToComplete: string;
+}
+
 export function End() {
+	const route = useRoute();
+	const { timeToComplete } = route.params as Params;
+
 	const navigation = useNavigation<any>();
 	const [isLoading, setIsLoading] = useState(false);
 	const { storedQuestionsData } = useStoredQuestionsData();
-	const {
-		MINIMUM_OF_CORRECT_ANSWERS,
-		numberOfCorrectAnswers,
-		// questionsCorrection,
-		result,
-	} = useQuestionsCorrection(storedQuestionsData);
+	const { MINIMUM_OF_CORRECT_ANSWERS, numberOfCorrectAnswers, result } =
+		useQuestionsCorrection(storedQuestionsData);
 
 	const subtitle = {
 		success: `Congratulations!\nYou passed`,
@@ -34,6 +44,10 @@ export function End() {
 
 	return (
 		<DefaultContainer>
+			<TimeContainer>
+				<TimeText>Total time:</TimeText>
+				<TimeText>{timeToComplete}</TimeText>
+			</TimeContainer>
 			<DefaultCard>
 				<IconsContainer>
 					{storedQuestionsData.map((question) => {
