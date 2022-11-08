@@ -10,6 +10,7 @@ interface Props {
 	icon?: keyof typeof MaterialIcons.glyphMap;
 	isLoading?: boolean;
 	outlined?: boolean;
+	width?: string;
 }
 
 export function DefaultButton({
@@ -18,6 +19,7 @@ export function DefaultButton({
 	icon,
 	isLoading,
 	outlined = false,
+	width,
 }: Props) {
 	const theme = useTheme();
 
@@ -27,6 +29,7 @@ export function DefaultButton({
 			isLoading={isLoading}
 			onPress={onPress}
 			outlined={outlined}
+			width={width}
 		>
 			{isLoading ? (
 				<ActivityIndicator color={theme.colors.text} />

@@ -2,11 +2,12 @@ import styled, { css } from 'styled-components/native';
 
 interface ButtonProps {
 	isLoading?: boolean;
+	width?: string;
 	outlined: boolean;
 }
 
 export const Button = styled.TouchableOpacity<ButtonProps>`
-	width: 100%;
+	width: ${({width}) => width ? width : '100%'};
 	height: 48px;
 	align-items: center;
 	justify-content: center;
