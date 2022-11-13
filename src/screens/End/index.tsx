@@ -18,7 +18,7 @@ import {
 } from '../../components';
 
 interface Params {
-	timeToComplete: string;
+	timeToComplete?: string;
 }
 
 export function End() {
@@ -44,10 +44,14 @@ export function End() {
 
 	return (
 		<DefaultContainer>
-			<TimeContainer>
-				<TimeText>Total time:</TimeText>
-				<TimeText>{timeToComplete}</TimeText>
-			</TimeContainer>
+			{timeToComplete !== undefined ? (
+				<TimeContainer>
+					<TimeText>Total time:</TimeText>
+					<TimeText>{timeToComplete}</TimeText>
+				</TimeContainer>
+			) : (
+				<></>
+			)}
 			<DefaultCard>
 				<IconsContainer>
 					{storedQuestionsData.map((question) => {

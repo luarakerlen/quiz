@@ -21,7 +21,11 @@ export function Beginning() {
 			.then((response) => {
 				const questions: QuestionInterface[] = response.data.results;
 				if (questions.length > 0) {
-					navigation.navigate('Question', { questions, questionIndex: 0 });
+					navigation.navigate('Question', {
+						questions,
+						questionIndex: 0,
+						type,
+					});
 				} else {
 					console.log('Array de perguntas vazia');
 					Alert.alert('Erro!', 'Não foi possível iniciar o jogo.');
@@ -42,7 +46,7 @@ export function Beginning() {
 			<Title>You're ready to start?</Title>
 			<Subtitle>It gonna take just a few minutes</Subtitle>
 			<ButtonsContainer>
-				<ButtonContainer style={{ marginRight: 10 }}>
+				<ButtonContainer>
 					<DefaultButton
 						isLoading={isClassicButtonLoading}
 						onPress={() => startGame('classic')}
@@ -50,7 +54,7 @@ export function Beginning() {
 						icon='play-circle-outline'
 					/>
 				</ButtonContainer>
-				<ButtonContainer>
+				{/* <ButtonContainer style={{ marginLeft: 10 }}>
 					<DefaultButton
 						isLoading={isTimedButtonLoading}
 						onPress={() => startGame('timed')}
@@ -58,7 +62,7 @@ export function Beginning() {
 						icon='timer'
 						outlined
 					/>
-				</ButtonContainer>
+				</ButtonContainer> */}
 			</ButtonsContainer>
 		</DefaultContainer>
 	);
